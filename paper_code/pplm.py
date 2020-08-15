@@ -194,6 +194,7 @@ def latent_perturb(model, args, context=None, sample=True, device='cuda'):
         token_list = []
         for word in word_list:
             token_list.append(enc.encode(" " + word))
+        print("bow", token_list[-1].shape, len(token_list))
         return token_list
 
     good_index = []
@@ -232,6 +233,7 @@ def latent_perturb(model, args, context=None, sample=True, device='cuda'):
         perturbed, discrim_loss, loss_in_time = sample_from_hidden(model=model, args=args, context=context,
                                                          device=device, perturb=True, good_index=good_index,
                                                          classifier=classifier)
+        print("perturb_shape", perturbed.shape)
         perturbed_list.append(perturbed)
         if classifier is not None:
             discrim_loss_list.append(discrim_loss.data.cpu().numpy())
@@ -405,13 +407,12 @@ def run_model():
     current_index = 0 
     for out in seq:
 
-        text = enc.decode(out)
-        print("=" * 40 + " Prefix of sentence " + "=" * 40)
-        print(text)
-        print("=" * 80)
+        print("out", out)
 
         out1, out_perturb, discrim_loss_list, loss_in_time_list = latent_perturb(model=model, args=args, context=out,
                                                                  device=device)
+
+        print("out1", out1)
 
         text_whole = enc.decode(out1.tolist()[0])
 
