@@ -27,7 +27,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data.dataset import random_split
 import torch.optim as optim
 
-from .pytorch_pretrained_bert import GPT2LMHeadModel, GPT2Tokenizer
+from pytorch_pretrained_bert import GPT2LMHeadModel, GPT2Tokenizer
 from torch.autograd import Variable
 
 torch.manual_seed(0)
