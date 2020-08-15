@@ -37,9 +37,9 @@ lab_root = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..')
 sys.path.insert(1, lab_root)
 
 
-tokenizer = GPT2Tokenizer.from_pretrained('gpt-2_pt_models/345M/')
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2-medium')
 
-model = GPT2LMHeadModel.from_pretrained('gpt-2_pt_models/345M/')
+model = GPT2LMHeadModel.from_pretrained('gpt2-medium')
 
 
 class ClassificationHead(torch.nn.Module):

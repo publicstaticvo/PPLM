@@ -25,7 +25,7 @@ from gpt2tunediscrim import ClassificationHead
 from PPLM.paper_code.pytorch_pretrained_bert import GPT2LMHeadModel, GPT2Tokenizer
 
 SmallConst = 1e-15
-enc = GPT2Tokenizer.from_pretrained('gpt-2_pt_models/345M/')
+enc = GPT2Tokenizer.from_pretrained('gpt2-medium')
 
 
 def perturb_past(past, model, prev, args, classifier, good_index=None, stepsize=0.01, vocab_size=50257,
