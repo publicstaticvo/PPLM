@@ -36,7 +36,7 @@ from transformers import GPT2Tokenizer
 from transformers.file_utils import cached_path
 from transformers.modeling_gpt2 import GPT2LMHeadModel
 
-from .pplm_classification_head import ClassificationHead
+from pplm_classification_head import ClassificationHead
 
 PPLM_BOW = 1
 PPLM_DISCRIM = 2
@@ -677,6 +677,7 @@ def set_generic_model_params(discrim_weights, discrim_meta):
 
 def run_pplm_example(
         pretrained_model="gpt2-medium",
+        is_tf=False,
         cond_text="",
         uncond=False,
         num_samples=1,
@@ -724,10 +725,13 @@ def run_pplm_example(
                 print("discrim = {}, pretrained_model set to discriminator's = {}".format(discrim, pretrained_model))
 
     # load pretrained model
-    model = GPT2LMHeadModel.from_pretrained(
-        pretrained_model,
-        output_hidden_states=True
-    )
+    if is_tf:
+        model = GPT2LMHeadModel.load_tf_weights(pretrained_model)
+    else:
+        model = GPT2LMHeadModel.from_pretrained(
+            pretrained_model,
+            output_hidden_states=True
+        )
     model.to(device)
     model.eval()
 
@@ -850,6 +854,11 @@ if __name__ == '__main__':
         type=str,
         default="gpt2-medium",
         help="pretrained model name or path to local checkpoint",
+    )
+    parser.add_argument(
+        "--is_tf",
+        action='store_true',
+        help="use tensorflow checkpoint",
     )
     parser.add_argument(
         "--cond_text", type=str, default="The lake",

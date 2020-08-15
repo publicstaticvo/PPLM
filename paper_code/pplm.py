@@ -196,7 +196,6 @@ def latent_perturb(model, args, context=None, sample=True, device='cuda'):
             token_list.append(enc.encode(" " + word))
         return token_list
 
-
     good_index = []
     if args.bag_of_words:
         bags_of_words = args.bag_of_words.split(";")
@@ -239,7 +238,6 @@ def latent_perturb(model, args, context=None, sample=True, device='cuda'):
         loss_in_time_list.append(loss_in_time)
 
     torch.cuda.empty_cache()
-        
 
     return original, perturbed_list, discrim_loss_list, loss_in_time_list
 

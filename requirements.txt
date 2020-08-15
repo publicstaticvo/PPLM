@@ -3,3 +3,6 @@ nltk
 colorama
 transformers
 torchtext
+tensorboard==1.15.0
+tensorflow-gpu==1.15.2
+tensorflow-estimator==1.15.1
