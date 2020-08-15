@@ -17,7 +17,7 @@ from style_utils import to_var, top_k_logits
 import pickle
 import csv
 
-from PPLM.paper_code.gpt2tunediscrim import ClassificationHead
+from gpt2tunediscrim import ClassificationHead
 
 #lab_root = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..')
 #sys.path.insert(1, lab_root)
