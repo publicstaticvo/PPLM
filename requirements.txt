@@ -1,8 +1,10 @@
 torch
 nltk
 colorama
-transformers
 torchtext
-tensorboard==1.15.0
-tensorflow-gpu==1.15.2
-tensorflow-estimator==1.15.1
+numpy
+sklearn
+tb-nightly
+future
+thulac
+transformers==2.1.1
